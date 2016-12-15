@@ -1,63 +1,32 @@
 package juegodecartas;
 
-public class Atributo{
-	
+public abstract class Atributo {
+
 	protected String nombre;
 	
-	protected int valor;
+	protected float valor;
+
+	public abstract boolean equals(Object o);
 	
-	protected boolean mayor;
-	
-	public Atributo(String nombre, boolean mayor) {
-		this.nombre = nombre;
-		this.mayor = mayor;
-	}
-	
-	public boolean equals(Atributo a){
-		return this.getNombre() == a.getNombre();
-	}
+	public abstract int gana(Atributo a);
 
 	public String getNombre() {
 		return this.nombre;
 	}
 
-	public int getValor() {
+	public float getValor() {
 		return this.valor;
 	}
 
-	public boolean getMayor() {
-		return this.mayor;
-	}
-
-	public void set(int valor){
+	public void set(float valor){
 		this.valor = valor;
 	}
-	
-	public int gana(Atributo a){
-		if(this.getValor() == a.getValor())
-		{
-			return 0;
-		}
-		else
-		{
-			if(this.getMayor())
-			{
-				if(this.getValor() < a.getValor())
-					return -1;
-				else
-					return 1;
-			}
-			else
-			{
-				if(this.getValor() < a.getValor())
-					return 1;
-				else
-					return -1;				
-			}
-		}
-	}
-	
 	public String toString(){
 		return this.nombre + " " + this.valor;
 	}
+	public Atributo clone(){
+		Atributo aux = this;
+		return aux;
+	}
+	
 }

@@ -1,8 +1,11 @@
 package main;
+
 import java.util.Vector;
 import juegodecartas.Mazo;
 import juegodecartas.Carta;
 import juegodecartas.Atributo;
+import juegodecartas.AtributoMayor;
+import juegodecartas.AtributoMenor;
 import juegodecartas.Jugador;
 
 public class Main {
@@ -12,16 +15,13 @@ public class Main {
 		// Jugadores
 		Jugador j1 = new Jugador("Marcelo");
 		Jugador j2 = new Jugador("Eduardo");
-		Vector<Jugador> jugadores = new Vector<Jugador>();		
-		jugadores.add(j1);
-		jugadores.add(j2);
 
 		// atributos
-		Atributo altura = new Atributo("Altura", true);
-		Atributo peso = new Atributo("Peso", true);
-		Atributo fuerza = new Atributo("Fuerza", true);
-		Atributo peleasGanadas = new Atributo("Peleas Ganadas", true);
-		Atributo velocidad = new Atributo("Velocidad", true);		
+		AtributoMayor altura = new AtributoMayor("Altura");
+		AtributoMayor peso = new AtributoMayor("Peso");
+		AtributoMayor fuerza = new AtributoMayor("Fuerza");
+		AtributoMenor peleasGanadas = new AtributoMenor("Peleas Perdidas");
+		AtributoMayor velocidad = new AtributoMayor("Velocidad");		
 
 		
 		//cartas 		
@@ -65,7 +65,8 @@ public class Main {
 		
 		
 		
-		m.repartir(jugadores);
+		m.repartir(j1,j2);
+		m.jugar(j1, j2);
 	}	
 	
 }

@@ -14,9 +14,30 @@ public class Jugador {
 	}
 
 	public void add(Carta c){
-		
 		this.cartas.add(c);
-		
-	}	
+	}
+	
+	public Atributo seleccionarAtributo(){
+		if(!this.cartas.isEmpty()){
+			Vector<Atributo> atributos = this.cartas.firstElement().getAtributos();
+			int atributoElegido = (int)(Math.random() * atributos.size());
+			return atributos.elementAt(atributoElegido);
+		}
+		else
+			return null;
+	}
+	
+	public Carta entregarCarta(){
+		Carta c = this.cartas.firstElement();
+		this.cartas.remove(0);
+		return c;
+	}
+	
+	public boolean isEmpty(){
+		return this.cartas.isEmpty();
+	}
 
+	public int gana(Atributo a){
+		return this.cartas.firstElement().gana(a);
+	}
 }

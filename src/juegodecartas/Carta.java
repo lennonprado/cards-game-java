@@ -30,8 +30,10 @@ public class Carta {
 		return this.nombre;
 	}
 	
-	public boolean pertenece(Carta c){
+	public boolean equals(Carta c){
 		return this.atributos == c.getAtributos();	
 	}
+	
+	
 
 }
