@@ -27,6 +27,10 @@ public class Jugador {
 			return null;
 	}
 	
+	public Carta get(){
+		return this.cartas.firstElement();
+	}
+	
 	public Carta entregarCarta(){
 		Carta c = this.cartas.firstElement();
 		this.cartas.remove(0);
