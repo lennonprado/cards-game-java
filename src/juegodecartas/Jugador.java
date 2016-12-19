@@ -44,4 +44,8 @@ public class Jugador {
 	public int gana(Atributo a){
 		return this.cartas.firstElement().gana(a);
 	}
+	
+	public String toString(){
+		return this.nombre;
+	}
 }

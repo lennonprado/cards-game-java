@@ -4,7 +4,7 @@ public abstract class Atributo {
 
 	protected String nombre;
 	
-	protected float valor;
+	protected double valor;
 
 	public abstract boolean equals(Object o);
 	
@@ -14,7 +14,7 @@ public abstract class Atributo {
 		return this.nombre;
 	}
 
-	public float getValor() {
+	public double getValor() {
 		return this.valor;
 	}
 

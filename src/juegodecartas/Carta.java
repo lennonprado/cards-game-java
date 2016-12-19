@@ -31,7 +31,9 @@ public class Carta {
 	}
 	
 	public boolean equals(Carta c){
-		return this.atributos == c.getAtributos();	
+		return this.atributos.equals(c.getAtributos());	
+		
+
 	}
 	
 	

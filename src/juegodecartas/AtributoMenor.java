@@ -2,8 +2,9 @@ package juegodecartas;
 
 public class AtributoMenor extends Atributo {
 	
-	public AtributoMenor(String nombre) {
+	public AtributoMenor(String nombre, double valor) {
 		super.nombre = nombre;
+		super.valor = valor;
 	}
 	
 	public boolean equals(Object a){

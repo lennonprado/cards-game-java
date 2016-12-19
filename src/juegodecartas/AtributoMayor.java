@@ -2,11 +2,13 @@ package juegodecartas;
 
 public class AtributoMayor extends Atributo{
 	
-	public AtributoMayor(String nombre) {
+	public AtributoMayor(String nombre, double valor) {
 		super.nombre = nombre;
+		super.valor = valor;
 	}
 	
 	public boolean equals(Object a){
+				
 		if(a instanceof AtributoMayor ){
 			return (this.getNombre() == ((AtributoMayor) a).getNombre());
 		}

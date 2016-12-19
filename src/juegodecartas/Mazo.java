@@ -6,10 +6,12 @@ public class Mazo {
 	
 	protected Vector<Carta> cartas;
 	protected Atributo atributoElegido;
+	protected Vector<Carta> empates;
 	
 	public Mazo() {
 		this.cartas = new Vector<Carta>();
 		this.atributoElegido = null;
+		this.empates = null;
 	}
 
 	public int cantidadCartas(){
@@ -35,23 +37,20 @@ public class Mazo {
 			
 			if(flag)
 			{	
-				System.out.println("--------------" + i + ": j1 : " + this.cartas.elementAt(i).toString());
+				//System.out.println("--------------" + i + ": " + j1.toString() +" : " + this.cartas.elementAt(i).toString());
 				j1.add(this.cartas.elementAt(i));
 				flag = false;
 			}
 			else 
 			{
-				System.out.println("--------------" + i + ": j2 : " + this.cartas.elementAt(i).toString());
+				//System.out.println("--------------" + i + ": " + j2.toString() + " : " + this.cartas.elementAt(i).toString());
 				j2.add(this.cartas.elementAt(i));
 				flag = true;
 			}
-		}
-		
-		System.out.println();
-		System.out.println("Fin repartir");
-		System.out.println();
-		
-		
+		}		
+		//System.out.println();
+		//System.out.println("Fin repartir");
+		//System.out.println();		
 	}
 	
 	public void jugar(Jugador j1, Jugador j2){
@@ -62,15 +61,16 @@ public class Mazo {
 				this.atributoElegido = j1.seleccionarAtributo();
 			}
 
-			System.out.println("Atributo elegido: " + this.atributoElegido.toString());
-			System.out.println("Carta Jugador 1: " + j1.get().toString());
-			System.out.println("Carta Jugador 2: " + j2.get().toString());
+			System.out.println("Atributo elegido por "+ j1.toString() +": " + this.atributoElegido.toString());
+
+			System.out.println("Carta Jugador " + j1.toString() +": " + j1.get().toString());
+
+			System.out.println("Carta Jugador " + j2.toString() + ": " + j2.get().toString());
 			
-			System.out.println("--------------");
 			
 			if(j2.gana(this.atributoElegido) == 0){
-				j1.entregarCarta();
-				j2.entregarCarta();				
+				this.empates.add(j1.entregarCarta());
+				this.empates.add(j2.entregarCarta());				
 				this.jugar(j1, j2);
 			}
 			else
@@ -78,22 +78,34 @@ public class Mazo {
 				if(j2.gana(this.atributoElegido) == 1)
 				{ 
 					
-					System.out.println("Gana J2");
+					System.out.println("Gana Jugador " + j2.toString());
+					System.out.println("--------------");
+
 					j2.add(j2.entregarCarta());
 					j2.add(j1.entregarCarta());
+					if(this.empates != null){
+						for(int i=0; i < this.empates.size();i++)
+							j2.add(this.empates.elementAt(i));
+						this.empates = null;
+					}
 					this.atributoElegido = null;
 					this.jugar(j2, j1);
 				}
 				else
 				{ 
-					System.out.println("Gana J1");
+					System.out.println("Gana Jugador " + j1.toString());
+					System.out.println("--------------");					
 					j1.add(j1.entregarCarta());
 					j1.add(j2.entregarCarta());
+					if(this.empates != null){
+						for(int i=0; i < this.empates.size();i++)
+							j1.add(this.empates.elementAt(i));
+						this.empates = null;
+					}
 					this.atributoElegido = null;
 					this.jugar(j1, j2);
 				}
 			}	
 		}
 	}
-	
 }
